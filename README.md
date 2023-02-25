@@ -27,16 +27,16 @@ You can see it
 
 docker-compose --version
 
-Conclusion - Docker Compose version v2.12.2
+  - Output: Docker Compose version v2.12.2
 
 docker --version
 
-Output - Docker version 19.03.15, build 99e3ed8919
+  - Output: Docker version 19.03.15, build 99e3ed8919
 
 Installation:
 
   * git clone https://github.com/koduarve/mikrobill.git
   * cd mikrobill/
-  * # Set passwords in .env and ./etc/proxysql/proxysql.cnf
-  * # start
+  * - Set passwords in .env and ./etc/proxysql/proxysql.cnf
+  * - start
   * docker-compose up -d
