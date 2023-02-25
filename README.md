@@ -1,5 +1,6 @@
-<h3 style="color:#FF0000">Auto deployment MikroBILL via docker-compose</h3>
+<h2 style="color:#FF0000">Auto deployment MikroBILL via docker-compose</h2>
 
+<h3 style="color:#FF0000">MikroBILL is a complete billing platform for Mikrotik routers (RouterOS)</h3>
 <b>MikroBILL official web site:</b>
 https://mikro-bill.com
 
@@ -14,7 +15,7 @@ Author: Timofei Ivastsenko Company: KODUARVE OÜ | [![www.koduarve.ee](https://k
 
 
 
-#### [![More Photos](https://mikro-bill.com/images/main.png)](https://mikro-bill.com/foto/)
+#### [![More Photos]([https://mikro-bill.com/images/main.png](https://mikro-bill.com/images/screenshots/moneyreport.png))](https://mikro-bill.com/foto/)
 
 <b>Debian/Ubuntu/CentOS install servers</b>
 
