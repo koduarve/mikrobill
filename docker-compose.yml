@@ -1,0 +1,148 @@
+version: '3'
+
+services:
+  php:
+    env_file: .env
+    build:
+      context: ./etc/php
+    container_name: ${APP_NAME}_php
+    entrypoint: sh /bin/entrypoint.sh php-fpm
+    restart: always
+    volumes:
+      - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+      - "./etc/php/entrypoint.sh:/bin/entrypoint.sh"
+      - "./etc/log/php:/var/log"
+      - ${APP_PATH}:/var/www
+    links:
+      - db:mysql
+    expose:
+      - 9000
+    depends_on:
+      - mikrobill
+  db:
+    image: mysql:8
+    container_name: ${APP_NAME}_db
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+    volumes:
+      - "db-data:/var/lib/mysql"
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+      '--default-authentication-plugin=mysql_native_password'
+    ]
+    expose:
+      - 3306
+  proxysql:
+    env_file: .env
+    build: ./etc/proxysql
+    image: proxy-sql-tcp
+    container_name: ${APP_NAME}_proxysql
+    healthcheck:
+      # test: "mysql -uradmin -pradmin -h 127.0.0.1 -P6032 -e 'SELECT 1'"
+      test: "ss -Htl '( sport = :6032 )'|grep LISTEN"
+      interval: 10s
+      retries: 6
+    restart: "always"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - "./etc/proxysql/proxysql.cnf:/etc/proxysql.cnf"
+      - "./etc/log/proxysql/proxysql.log:/var/lib/proxysql/proxysql.log"
+    links:
+      - db:mysql
+    expose:
+      - 6033
+      - 6032
+      - 6070
+      - 6080
+    ports:
+      - 6032:6032
+      - 6033:6033
+      - 6070:6070
+      - 6080:6080
+    depends_on:
+      - db
+  apache:
+    env_file: .env
+    build: ./etc/httpd
+    restart: always
+    volumes:
+      - "./etc/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf"
+      - "./etc/log/apache:/var/log"
+      - ${APP_PATH}:/var/www
+    depends_on:
+      - php
+    expose:
+      - 8080
+  web:
+    env_file: .env
+    build: etc/nginx
+    container_name: ${APP_NAME}_nginx
+    ports:
+      - 8090:80
+      - 9443:443
+    restart: always
+    volumes:
+      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - mikrobill-cert:/etc/nginx/ssl/live/mikrobill:ro
+      - mikrobill-task:/etc/nginx/task:rw
+      - "./etc/log/nginx:/var/log/nginx"
+      - ${APP_PATH}:/var/www
+    depends_on:
+      - apache
+  mikrobill:
+    privileged: true
+    init: true
+    env_file: .env
+    build: ./etc/mikrobill
+    image: mikrobill-core
+    container_name: ${APP_NAME}_core
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ADMIN_LOGIN: ${ADMIN_LOGIN}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    restart: "always"
+    entrypoint: "bash /bin/entrypoint.sh"
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - SYS_ADMIN
+      - SYS_NICE
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ${APP_PATH}:/var/www:rw
+      - mikrobill-cert:/var/MikroBILL/cert:rw
+      - mikrobill-task:/var/MikroBILL/docker-task:rw
+      - mikrobill:/var/MikroBILL:rw
+      - "./etc/mikrobill/entrypoint.sh:/bin/entrypoint.sh"
+      - "./etc/log/mikrobill/Log.txt:/var/MikroBILL/Log.txt"
+    links:
+      - db:mysql
+    expose:
+      - 7402
+      - 7403
+      - 7404
+      - 7405
+    ports:
+      - 7402:7402
+      - 7403:7403
+      - 7404:7404
+      - 7405:7405
+    depends_on:
+      - db
+volumes:
+    web-data:
+    db-data:
+    mikrobill-cert:
+    mikrobill-task:
+    mikrobill:
+

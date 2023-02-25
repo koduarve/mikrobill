@@ -1,0 +1,71 @@
+datadir="/var/lib/proxysql"
+
+admin_variables=
+{
+    admin_credentials="admin:admin;radmin:radmin"
+    mysql_ifaces="0.0.0.0:6032"
+    refresh_interval=2000
+    web_enabled=true
+    web_port=6080
+    stats_credentials="stats:admin"
+}
+
+mysql_variables=
+{
+    threads=4
+    max_connections=2048
+    default_query_delay=0
+    default_query_timeout=36000000
+    have_compress=true
+    poll_timeout=2000
+    interfaces="0.0.0.0:6033"
+    default_schema="information_schema"
+    stacksize=1048576
+    server_version="5.5.30"
+    connect_timeout_server=3000
+    monitor_username="mikrobill"
+    monitor_password="mikrobill_pw"
+    monitor_history=600000
+    monitor_connect_interval=60000
+    monitor_ping_interval=10000
+    monitor_read_only_interval=1500
+    monitor_read_only_timeout=500
+    ping_interval_server_msec=120000
+    ping_timeout_server=500
+    commands_stats=true
+    sessions_sort=true
+    connect_retries_on_failure=10
+    admin-web_enabled=true
+    monitor_galera_healthcheck_interval=2000
+    monitor_galera_healthcheck_timeout=800
+}
+
+mysql_galera_hostgroups =
+(
+    {
+        writer_hostgroup=10
+        backup_writer_hostgroup=10
+        reader_hostgroup=10
+        offline_hostgroup=9999
+        max_writers=1
+        writer_is_also_reader=2
+        max_transactions_behind=30
+        active=1
+    }
+)
+
+mysql_replication_hostgroups =
+(
+    { writer_hostgroup=10 , reader_hostgroup=10 , comment="host groups" }
+)
+
+mysql_servers =
+(
+    { address="mysql" , port=3306 , hostgroup=10, max_connections=200 }
+)
+
+mysql_users =
+(
+    { username = "mikrobill" , password = "mikrobill_pw" , default_hostgroup = 10 , active = 1 },
+    { username = "root" , password = "root_mikrobill" , default_hostgroup = 10 , active = 1 }
+)
