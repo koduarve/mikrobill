@@ -14,7 +14,7 @@ Feedback/comment/suggestions : dev@koduarve.ee
 Author: Timofei Ivastsenko Company: KODUARVE OÜ | [![www.koduarve.ee](https://koduarve.ee/template/koduarve/images/logo.png)](https://koduarve.ee/)
 
 
-[![screenshots](https://mikro-bill.com/images/main.png)](https://mikro-bill.com/)
+[![screenshots](https://koduarve.ee/mikrobill.png)](https://mikro-bill.com/)
 
 <b>Debian/Ubuntu/CentOS install servers</b>
 
