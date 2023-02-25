@@ -1,9 +1,7 @@
 <h2 style="color:#FF0000">Auto deployment MikroBILL via docker-compose</h2>
 
 <h3 style="color:#FF0000">MikroBILL is a complete billing platform for Mikrotik routers (RouterOS)</h3>
-<b>MikroBILL official web site:</b>
-[I'm an inline-style link](https://www.google.com)<br />
-[ www.mikro-bill.com ](www.mikro-bill.com/?lng=en/)
+<b>MikroBILL official web site: www.mikro-bill.com/?lng=en</b>
 
 This script will work on Debian, Ubuntu, CentOS and probably other distros
 of the same families. It will probably work if you simply want to setup a MikroBILL on
