@@ -2,8 +2,8 @@
 
 <h3 style="color:#FF0000">MikroBILL is a complete billing platform for Mikrotik routers (RouterOS)</h3>
 <b>MikroBILL official web site:</b>
-KODUARVE OÜ | [www.koduarve.ee](https://koduarve.ee/) [![www.koduarve.ee]
-| [www.mikro-bill.com](www.mikro-bill.com/?lng=en/)
+[I'm an inline-style link](https://www.google.com)<br />
+[ www.mikro-bill.com ](www.mikro-bill.com/?lng=en/)
 
 This script will work on Debian, Ubuntu, CentOS and probably other distros
 of the same families. It will probably work if you simply want to setup a MikroBILL on
