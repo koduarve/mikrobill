@@ -35,6 +35,11 @@ Installation:
 
   * git clone https://github.com/koduarve/mikrobill.git
   * cd mikrobill/
-  * # Set passwords in .env and ./etc/proxysql/proxysql.cnf
-  * # start
-  * docker-compose up -d
+    - NB! Set passwords in .env and ./etc/proxysql/proxysql.cnf
+    - Set in docker-compose.yml (Service - web -> ports http and https:)
+     - 8090:80 - Change to your (80:80)
+     - 9443:443 - Change to your (443:443)
+     - ProxySQL default port: 6033 (MikroREMOTE -> Programm -> Field (Databese) Address MySQL)
+  * Start command
+    - docker-compose up -d
+  
