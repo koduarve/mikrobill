@@ -3,9 +3,6 @@
 <b>MikroBILL official web site:</b>
 https://mikro-bill.com
 
-
-<b>MikroBILL for docker-compose</b>
-
 This script will work on Debian, Ubuntu, CentOS and probably other distros
 of the same families. It will probably work if you simply want to setup a MikroBILL on
 your Debian/Ubuntu/CentOS box via docker compose. It has been designed to be as universal as possible.
