@@ -24,9 +24,13 @@ MikroBILL v2.0.1.10 - BETA
   * To get started, install the latest version of docker-compose, git, and docker on your server.
 
 You can see it
+
 docker-compose --version
+
 Conclusion - Docker Compose version v2.12.2
+
 docker --version
+
 Output - Docker version 19.03.15, build 99e3ed8919
 
 Installation:
