@@ -14,7 +14,10 @@ MikroBill project: Feedback/comment/suggestions: dev@koduarve.ee<br />
 Author: Timofei Ivastsenko Company: KODUARVE OÜ | [www.koduarve.ee](https://koduarve.ee/) [![www.koduarve.ee](https://koduarve.ee/template/koduarve/images/logo-white-small.png)](https://koduarve.ee/)<br />
 
 
-###[![screenshots](https://koduarve.ee/mikrobill.png)](https://mikro-bill.com/)
+
+
+
+   [![screenshots](https://koduarve.ee/mikrobill.png)](https://mikro-bill.com/)
 
 <b>Debian/Ubuntu/CentOS install servers</b>
 
