@@ -24,8 +24,7 @@ RUN docker-php-ext-configure gd #--with-freetype-dir=/usr/include/ --with-jpeg-d
 
 RUN docker-php-ext-configure intl 
 
-RUN pecl install mcrypt \
-   && docker-php-ext-enable mcrypt
+RUN pecl install mcrypt docker-php-ext-enable mcrypt
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
