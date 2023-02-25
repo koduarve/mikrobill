@@ -10,7 +10,7 @@ your Debian/Ubuntu/CentOS box via docker compose. It has been designed to be as 
 
 This is a free shell script under GNU GPL version 3.0 or above
 Copyright (C) 2023 MikroBill project.<br />
-Feedback/comment/suggestions : dev@koduarve.ee
+Feedback/comment/suggestions : dev@koduarve.ee<br />
 Author: Timofei Ivastsenko Company: KODUARVE OÜ | [![www.koduarve.ee](https://koduarve.ee/template/koduarve/images/logo.png)](https://koduarve.ee/)
 
 
