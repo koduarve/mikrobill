@@ -2,7 +2,7 @@
 
 <h3 style="color:#FF0000">MikroBILL is a complete billing platform for Mikrotik routers (RouterOS)</h3>
 <b>MikroBILL official web site:</b>
-https://mikro-bill.com
+[www.mikro-bill.com]](https://mikro-bill.com)
 
 This script will work on Debian, Ubuntu, CentOS and probably other distros
 of the same families. It will probably work if you simply want to setup a MikroBILL on
@@ -11,7 +11,7 @@ your Debian/Ubuntu/CentOS box via docker compose. It has been designed to be as 
 This is a free shell script under GNU GPL version 3.0 or above
 Copyright (C) 2023<br />
 MikroBill project: Feedback/comment/suggestions: dev@koduarve.ee<br />
-Author: Timofei Ivastsenko Company: KODUARVE OÜ | [![www.koduarve.ee]](https://koduarve.ee/)<br />
+Author: Timofei Ivastsenko Company: KODUARVE OÜ | [www.koduarve.ee](https://koduarve.ee/)<br />
 [![www.koduarve.ee](https://koduarve.ee/template/koduarve/images/logo.png)](https://koduarve.ee/)
 
 
