@@ -37,6 +37,7 @@ Installation:
 
   * git clone https://github.com/koduarve/mikrobill.git
   * cd mikrobill/
-  * - Set passwords in .env and ./etc/proxysql/proxysql.cnf
-  * - start
-  * docker-compose up -d
+  * - NB! Set passwords in .env and ./etc/proxysql/proxysql.cnf
+  * Start command
+  * - docker-compose up -d
+  
