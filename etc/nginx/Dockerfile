@@ -24,7 +24,7 @@ RUN echo "upstream apache { server apache:8080 fail_timeout=0; }" > /etc/nginx/c
 
 RUN echo '#!/bin/bash' > /bootstrap.sh
 RUN echo 'function nginx_stop () { kill $(ps aux | grep "[n]ginx" | awk "{print $2}"); }' >> /bootstrap.sh
-RUN echo 'function nginx_sslon () { sed -i "/ssl_/s/#//" /etc/nginx/sites-available/app.conf && sed -i "s|ssl off|ssl on|g" /etc/nginx/sites-available/app.conf && dns="$(openssl x509 -noout -text -in /etc/nginx/ssl/live/mikrobill/mikrobill.crt | grep NS: |sed "s/.*://g")"; sed -i "s/server_name.*/server_name $dns\;/gI" /etc/nginx/sites-available/app.conf; }' >> /bootstrap.sh
+RUN echo 'function nginx_sslon () { sed -i "/ssl_/s/#//" /etc/nginx/sites-available/app.conf && sed -i "s|ssl off|ssl on|g" /etc/nginx/sites-available/app.conf && dns="$(openssl x509 -noout -text -in /etc/nginx/ssl/live/mikrobill/mikrobill.crt | grep NS: |sed "s/.*://g")"; if [ -z "$dns" ]; then dns="$(openssl x509 -noout -text -in /etc/nginx/ssl/live/mikrobill/mikrobill.crt | grep Issuer: | sed "s/.*CN = //g")"; fi && sed -i "s/server_name.*/server_name $dns\;/gI" /etc/nginx/sites-available/app.conf; }' >> /bootstrap.sh
 RUN echo 'function nginx_ssloff () { sed -i "/ssl_/s/^/#/" /etc/nginx/sites-available/app.conf && sed -i "s|ssl on|ssl off|g" /etc/nginx/sites-available/app.conf && sed -i "s/server_name.*/server_name localhost\;/gI" /etc/nginx/sites-available/app.conf; }' >> /bootstrap.sh
 RUN echo 'function nginx_start () { nginx; }' >> /bootstrap.sh
 RUN echo 'while true' >> /bootstrap.sh
