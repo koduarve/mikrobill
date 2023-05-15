@@ -25,7 +25,7 @@ RUN apt-get update \
 RUN apt-get clean
 
 # Install .NET
-ENV DOTNET_VERSION=3.1.0
+ENV DOTNET_VERSION=6.0.0
 
 RUN curl -fSL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz \
     && mkdir -p /usr/share/dotnet \
