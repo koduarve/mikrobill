@@ -19,7 +19,7 @@ fi
 mikrobill_install () {
 echo "DotNET Core start process MikroBILL silent Installation"
 dotnet /home/MikroBILL/MikroBILL.dll /SILENT_INSTALL="{\"web_path\":\"/var/www/web\",\"check_db\":\"0\",\"language\":\"ru\",\"db_ip\":\"mysql\",\"db_port\":\"3306\",\"db_name\":\"${MYSQL_DATABASE}\",\"db_login\":\"root\",\"db_pass\":\"${MYSQL_ROOT_PASSWORD}\",\"admin_login\":\"${ADMIN_LOGIN}\",\"admin_pass\":\"${ADMIN_PASSWORD}\",\"admin_allowed_ip\":\"\",\"lic_accept\":\"1\"}"&> /dev/null
-sleep 5 && mikrobill_web_install
+sleep 5 && ln -s /var/MikroBILL/Log.txt /var/log/MikroBILL/Log.txt && mikrobill_web_install
 }
 
 mikrobill_update () {
@@ -29,7 +29,7 @@ if [ -f "$UPDATE" ]; then
     else
        BUILD="beta"
     fi
-    echo "Mikrobill updating..." && rm -rf /tmp/MikroBILL && mkdir -p /tmp/MikroBILL && wget -O /tmp/MikroBILL/MikroBILL.zip https://mikro-bill.com/downloads/$BUILD && unzip /tmp/MikroBILL/MikroBILL.zip -d /tmp/MikroBILL && dotnet /tmp/MikroBILL/MikroBILL.dll && echo "Mikrobill updated!" && rm -rf /tmp/MikroBILL && chmod -R a+rX /var/www/web/ && rm -rf $UPDATE && exit && exit
+    echo "Mikrobill updating..." && rm -rf /tmp/MikroBILL && mkdir -p /tmp/MikroBILL && wget -O /tmp/MikroBILL/MikroBILL.zip https://mikro-bill.com/downloads/$BUILD && unzip /tmp/MikroBILL/MikroBILL.zip -d /tmp/MikroBILL && dotnet /tmp/MikroBILL/MikroBILL.dll && echo "Mikrobill updated!" && rm -rf /tmp/MikroBILL && chmod -R a+rX /var/www/web/ && rm -rf $UPDATE && ln -s /var/MikroBILL/Log.txt /var/log/MikroBILL/Log.txt && exit && exit
 else
     echo "Updated to latest version"
 fi
