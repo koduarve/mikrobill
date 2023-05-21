@@ -124,7 +124,7 @@ services:
       - mikrobill-task:/var/MikroBILL/docker-task:rw
       - mikrobill:/var/MikroBILL:rw
       - "./etc/mikrobill/entrypoint.sh:/bin/entrypoint.sh"
-      - "./etc/log/mikrobill/:/var/log/MikroBILL/"
+      - "./etc/log/mikrobill/Log.txt:/var/MikroBILL/Log.txt"
     links:
       - db:mysql
     expose:
