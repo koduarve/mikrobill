@@ -125,6 +125,7 @@ services:
       - mikrobill:/var/MikroBILL:rw
       - "./etc/mikrobill/entrypoint.sh:/bin/entrypoint.sh"
       - "./etc/log/mikrobill/Log.txt:/var/MikroBILL/Log.txt"
+      - "./etc/log/mikrobill/backup:/var/MikroBILL/Backup"
     links:
       - db:mysql
     expose:
