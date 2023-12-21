@@ -25,9 +25,9 @@ sleep 5 && mikrobill_web_install
 mikrobill_update () {
 if [ -f "$UPDATE" ]; then
     if grep -q 1 $UPDATE; then
-       BUILD="beta"
+       BUILD="stable"
     else
-       BUILD="beta"
+       BUILD="stable"
     fi
     echo "Mikrobill updating..." && rm -rf /tmp/MikroBILL && mkdir -p /tmp/MikroBILL && wget -O /tmp/MikroBILL/MikroBILL.zip https://mikro-bill.com/downloads/$BUILD && unzip /tmp/MikroBILL/MikroBILL.zip -d /tmp/MikroBILL && dotnet /tmp/MikroBILL/MikroBILL.dll && echo "Mikrobill updated!" && rm -rf /tmp/MikroBILL && chmod -R a+rX /var/www/web/ && rm -rf $UPDATE && exit && exit
 else
